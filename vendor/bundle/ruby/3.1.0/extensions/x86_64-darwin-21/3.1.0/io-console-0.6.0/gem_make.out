@@ -1,0 +1,20 @@
+current directory: /Users/ryosaito/Desktop/ruby_lesson/mapapp/vendor/bundle/ruby/3.1.0/gems/io-console-0.6.0/ext/io/console
+/Users/ryosaito/.rbenv/versions/3.1.2/bin/ruby -I /Users/ryosaito/.rbenv/versions/3.1.2/lib/ruby/3.1.0 -r ./siteconf20230203-41044-8lf29u.rb extconf.rb
+checking for termios.h... yes
+checking for cfmakeraw() in termios.h... yes
+checking for sys/ioctl.h... yes
+checking for HAVE_RUBY_FIBER_SCHEDULER_H... yes
+creating Makefile
+
+current directory: /Users/ryosaito/Desktop/ruby_lesson/mapapp/vendor/bundle/ruby/3.1.0/gems/io-console-0.6.0/ext/io/console
+make DESTDIR\= clean
+
+current directory: /Users/ryosaito/Desktop/ruby_lesson/mapapp/vendor/bundle/ruby/3.1.0/gems/io-console-0.6.0/ext/io/console
+make DESTDIR\=
+compiling console.c
+linking shared-object io/console.bundle
+ld: warning: -undefined dynamic_lookup may not work with chained fixups
+
+current directory: /Users/ryosaito/Desktop/ruby_lesson/mapapp/vendor/bundle/ruby/3.1.0/gems/io-console-0.6.0/ext/io/console
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 console.bundle ./.gem.20230203-41044-93bjn5/io

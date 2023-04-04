@@ -1,0 +1,16 @@
+current directory: /Users/ryosaito/Desktop/ruby_lesson/mapapp/vendor/bundle/ruby/3.1.0/gems/bootsnap-1.16.0/ext/bootsnap
+/Users/ryosaito/.rbenv/versions/3.1.2/bin/ruby -I /Users/ryosaito/.rbenv/versions/3.1.2/lib/ruby/3.1.0 -r ./siteconf20230203-41044-c2ahi6.rb extconf.rb
+creating Makefile
+
+current directory: /Users/ryosaito/Desktop/ruby_lesson/mapapp/vendor/bundle/ruby/3.1.0/gems/bootsnap-1.16.0/ext/bootsnap
+make DESTDIR\= clean
+
+current directory: /Users/ryosaito/Desktop/ruby_lesson/mapapp/vendor/bundle/ruby/3.1.0/gems/bootsnap-1.16.0/ext/bootsnap
+make DESTDIR\=
+compiling bootsnap.c
+linking shared-object bootsnap/bootsnap.bundle
+ld: warning: -undefined dynamic_lookup may not work with chained fixups
+
+current directory: /Users/ryosaito/Desktop/ruby_lesson/mapapp/vendor/bundle/ruby/3.1.0/gems/bootsnap-1.16.0/ext/bootsnap
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 bootsnap.bundle ./.gem.20230203-41044-6uqyw2/bootsnap

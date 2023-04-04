@@ -1,0 +1,7 @@
+<body class="body">
+  <% @popup.each do |popup|%>
+  <h3 class="title"><%= popup.column1 %></h3>
+  <p class="text"><%= popup.column2 %></p>
+  <img class="photo" src="<%= popup.image %>">
+  <% end %>
+</body>
