@@ -16,6 +16,7 @@
     #map { height: 100%; }
     #sidebar { height: 100%; width: 30%; background-color: #f5f5f5; z-index: 1; }
     #search-box { margin: 10px; }
+    #directions { margin: 10px; }
     .mapboxgl-popup-content iframe {width: 300px; height: 200px;}
     .mapboxgl-popup-content {width: 300px; height: 200px;}
     .marker {width: 25px; height: 25px; background-size: contain; background-repeat: no-repeat; background-position: center;}
@@ -29,6 +30,7 @@
   <div id='sidebar'>
     <div id='search-box'></div>
     <p>こんにちは</p>
+    <div id='directions'></div> <!-- 経路案内を表示するためのコンテナを追加 -->
   </div>
   
   <% @map.each do |map|%>
@@ -47,6 +49,54 @@
         [139.562587, 35.531549],
         [139.910206, 35.817813]
       ]
+    });
+
+    var directions = new MapboxDirections({
+      accessToken: mapboxgl.accessToken,
+      profile: 'mapbox/walking',
+      unit: 'metric', // メートル単位で表示
+      language: 'ja', // 言語を日本語に設定
+      controls: {
+        inputs: true, // 経路検索ボックスを非表示にする
+        instructions: true // 経路案内を非表示にする
+      }
+    });
+
+    document.getElementById('directions').appendChild(directions.onAdd(map)); // 経路案内をサイドバーに追加
+
+    map.on('load', function () {
+      var markers = document.querySelectorAll('#maps');
+      var waypoints = [];
+
+      markers.forEach(function(marker) {
+        var id = marker.getAttribute('data-id');
+        var longitude = parseFloat(marker.getAttribute('data-longitude'));
+        var latitude = parseFloat(marker.getAttribute('data-latitude'));
+
+        waypoints.push({id: id, longitude: longitude, latitude: latitude});
+
+        var popup = new mapboxgl.Popup()
+          .setHTML(`<iframe src="/maps/${marker.dataset.id}/popup"></iframe>`);
+
+        var el = document.createElement('div');
+        el.className = 'marker';
+        el.style.backgroundImage = 'url(icons8-マーカー-50.png)';
+
+        // ポップアップを表示する位置を指定
+        new mapboxgl.Marker(el)
+          .setLngLat([longitude, latitude])  // マーカーの座標
+          .setPopup(popup) // ポップアップを設定
+          .addTo(map); // マップに追加
+      });
+
+      // 経由地をルート案内に設定
+      for (var i = 0; i < waypoints.length; i++) {
+        directions.addWaypoint(i, [waypoints[i].longitude, waypoints[i].latitude]);
+      }
+
+      directions.on('route', function () {
+        // ルートが計算されたら、ルートを地図上に表示
+      });
     });
 
     navigator.geolocation.getCurrentPosition(function(position) {
@@ -70,26 +120,6 @@
       mapboxgl: mapboxgl
     });
     document.getElementById('search-box').appendChild(geocoder.onAdd(map));
-
-    var markers = document.querySelectorAll('#maps');
-     markers.forEach(function(marker) {
-     var id = marker.getAttribute('data-id');
-     var longitude = marker.getAttribute('data-longitude');
-     var latitude = marker.getAttribute('data-latitude');
-
-    var popup = new mapboxgl.Popup()
-    .setHTML(`<iframe src="/maps/${marker.dataset.id}/popup"></iframe>`);
-
-    var el = document.createElement('div');
-    el.className = 'marker';
-    el.style.backgroundImage = 'url(icons8-マーカー-50.png)';
-
-    // ポップアップを表示する位置を指定
-    new mapboxgl.Marker(el)
-     .setLngLat([longitude, latitude])  // マーカーの座標
-     .setPopup(popup) // ポップアップを設定
-     .addTo(map); // マップに追加
-    });
     
   </script>
 </body>
