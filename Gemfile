@@ -73,3 +73,5 @@ end
 
 gem 'gmaps4rails'
 gem 'geocoder'
+
+gem "google_drive"

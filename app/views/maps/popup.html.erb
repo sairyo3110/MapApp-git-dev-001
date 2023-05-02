@@ -1,7 +1,6 @@
-<body class="body">
-  <% @popup.each do |popup|%>
-  <h3 class="title"><%= popup.column1 %></h3>
-  <p class="text"><%= popup.column2 %></p>
-  <img class="photo" src="<%= popup.image %>">
-  <% end %>
-</body>
+<div>
+  <h3><%= @location[0] %></h3>
+  <p>緯度: <%= @location[2] %></p>
+  <p>経度: <%= @location[4] %></p>
+  <!-- 他の情報も表示したい場合は、適切に追加してください -->
+</div>

@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
+
+  get 'maps/popup', to: 'maps#popup'
+
+  get 'posts/edit'
   get 'posts/index'
+
+  resources :maps do
+    collection do
+      post :update_maps
+    end
+  end
 
   get '/maps/:id/popup', to: 'maps#popup', as: 'map_popup'
   get 'maps/index' 
