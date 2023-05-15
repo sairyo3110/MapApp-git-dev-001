@@ -6,17 +6,43 @@ class MapsController < ApplicationController
     worksheet = spreadsheet.worksheet_by_title("赤坂")
 
     @locations = worksheet.rows[1..] # ヘッダー行を除いてすべての行を取得
+    @location = worksheet.rows[1..] # ヘッダー行を除いてすべての行を取得
 
-    @sheet_titles = get_sheet_titles(spreadsheet)
+    @types = @locations.map { |location| location[5] }.uniq
+  end
+
+  def searchs
+  end
+
+  def route
   end
 
   def popup
     session = GoogleDrive::Session.from_config("config.json")
     spreadsheet = session.spreadsheet_by_url("https://docs.google.com/spreadsheets/d/1Jh-GjcUYp5CZwCIaN6cbxI2FGBLt76uMkCBtB0Yq82Y/edit#gid=0")
-    worksheet = spreadsheet.worksheet_by_title("シート1")
+    worksheet = spreadsheet.worksheet_by_title("赤坂")
   
     id = params[:id]
     @location = worksheet.rows.find { |row| row[1] == id }
+
+    @locations = worksheet.rows[1..] # ヘッダー行を除いてすべての行を取得
+    @types = @locations.map { |location| location[5] }.uniq
+  
+    if @location.nil?
+      render plain: 'データが見つかりません', status: 404
+    end
+  end
+
+  def content
+    session = GoogleDrive::Session.from_config("config.json")
+    spreadsheet = session.spreadsheet_by_url("https://docs.google.com/spreadsheets/d/1Jh-GjcUYp5CZwCIaN6cbxI2FGBLt76uMkCBtB0Yq82Y/edit#gid=0")
+    worksheet = spreadsheet.worksheet_by_title("赤坂")
+  
+    id = params[:id]
+    @location = worksheet.rows.find { |row| row[1] == id }
+
+    @locations = worksheet.rows[1..] # ヘッダー行を除いてすべての行を取得
+    @types = @locations.map { |location| location[5] }.uniq
   
     if @location.nil?
       render plain: 'データが見つかりません', status: 404

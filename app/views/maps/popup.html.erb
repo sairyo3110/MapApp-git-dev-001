@@ -1,6 +1,11 @@
+<head>
+  <style>
+    .hide-header {
+      display: none;
+    }
+  </style>
+</head>
 <div>
   <h3><%= @location[0] %></h3>
-  <p>緯度: <%= @location[2] %></p>
-  <p>経度: <%= @location[4] %></p>
-  <!-- 他の情報も表示したい場合は、適切に追加してください -->
+  <p>住所：<%= @location[1] %></p>
 </div>

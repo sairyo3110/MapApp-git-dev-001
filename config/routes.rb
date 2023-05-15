@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  get 'maps/popup', to: 'maps#popup'
+  get 'search', to: 'maps#search'
+  get 'route', to: 'maps#route'
 
   get 'posts/edit'
   get 'posts/index'
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/maps/:id/content', to: 'maps#content', as: 'map_content'
   get '/maps/:id/popup', to: 'maps#popup', as: 'map_popup'
   get 'maps/index' 
   root to: 'maps#index'

@@ -11,6 +11,26 @@
   </head>
 
   <body>
+    <header class="hide-header">
+      <div class="header-logo">
+        東京デートマップ
+        <a href="#" class="search-button">検索</a>
+        <a href="#" class="route-button">ルート案内</a>
+      </div>
+    </header>
+
+    <div class="sidebar">
+      <div id="sidebar-content">
+        <button class="close-button"><</button>
+        <div id="search-content" class="sidebar-content-item">
+          <%= render "maps/search" %>
+        </div>
+        <div id="route-content" class="sidebar-content-item" style="display: none;">
+          <%= render "maps/route" %>
+        </div>
+      </div>
+    </div>
+
     <%= yield %>
   </body>
 </html>

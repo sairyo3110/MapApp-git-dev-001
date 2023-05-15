@@ -1,0 +1,15 @@
+<div class="sidebar-content">
+  <h2>検索</h2>
+
+  <!-- Mapbox Geocoderを適用するためのdiv要素 -->
+  <div id="geocoder" class="geocoder"></div>
+
+  <% @types.each do |type| %>
+    <div class="image-container" data-type="<%= type %>">
+      <%= image_tag "#{type}.png", alt: type %>
+    </div>
+    <p><%= type %></p>
+  <% end %>
+
+  <iframe src="/maps/${id}/popup"></iframe>
+</div>
